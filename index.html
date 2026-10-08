@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="top-bar__left">
+      <span id="greeting-text" class="greeting-text"></span>
+      <button class="btn btn--ghost btn--sm" id="edit-name-btn" title="Change your name">✏️</button>
+    </div>
+    <div class="top-bar__center">
+      <div id="clock" class="clock"></div>
+      <div id="date-display" class="date-display"></div>
+    </div>
+    <div class="top-bar__right">
+      <button class="btn btn--ghost btn--icon" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- NAME MODAL -->
+  <div class="modal-overlay" id="name-modal" role="dialog" aria-modal="true" aria-labelledby="name-modal-title">
+    <div class="modal">
+      <h2 class="modal__title" id="name-modal-title">What's your name?</h2>
+      <input
+        type="text"
+        id="name-input"
+        class="input"
+        placeholder="Enter your name…"
+        maxlength="30"
+        autocomplete="off"
+      />
+      <div class="modal__actions">
+        <button class="btn btn--secondary" id="name-cancel-btn">Cancel</button>
+        <button class="btn btn--primary" id="name-save-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="dashboard">
+
+    <!-- FOCUS TIMER -->
+    <section class="card timer-card" aria-label="Focus Timer">
+      <div class="card__header">
+        <h2 class="card__title">⏱ Focus Timer</h2>
+        <div class="timer-settings">
+          <label for="pomodoro-duration" class="label--inline">Minutes:</label>
+          <input
+            type="number"
+            id="pomodoro-duration"
+            class="input input--small"
+            value="25"
+            min="1"
+            max="120"
+            aria-label="Pomodoro duration in minutes"
+          />
+        </div>
+      </div>
+
+      <div class="timer-display" aria-live="polite" aria-label="Timer display">
+        <span id="timer-minutes">25</span><span class="timer-colon">:</span><span id="timer-seconds">00</span>
+      </div>
+
+      <div class="timer-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="timer-progress__bar" id="timer-progress-bar"></div>
+      </div>
+
+      <div class="timer-controls">
+        <button class="btn btn--primary" id="timer-start-btn">▶ Start</button>
+        <button class="btn btn--secondary" id="timer-stop-btn" disabled>⏸ Pause</button>
+        <button class="btn btn--ghost" id="timer-reset-btn">↺ Reset</button>
+      </div>
+
+      <p class="timer-status" id="timer-status"></p>
+    </section>
+
+    <!-- TO-DO LIST -->
+    <section class="card todo-card" aria-label="To-Do List">
+      <div class="card__header">
+        <h2 class="card__title">✅ To-Do List</h2>
+        <span class="badge" id="todo-count">0 tasks</span>
+      </div>
+
+      <form class="todo-form" id="todo-form" autocomplete="off">
+        <input
+          type="text"
+          id="todo-input"
+          class="input"
+          placeholder="Add a new task…"
+          maxlength="120"
+          aria-label="New task"
+        />
+        <button type="submit" class="btn btn--primary">Add</button>
+      </form>
+
+      <ul class="todo-list" id="todo-list" aria-label="Task list"></ul>
+
+      <div class="todo-footer">
+        <button class="btn btn--ghost btn--sm" id="clear-completed-btn">Clear completed</button>
+      </div>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="card links-card" aria-label="Quick Links">
+      <div class="card__header">
+        <h2 class="card__title">🔗 Quick Links</h2>
+      </div>
+
+      <form class="links-form" id="links-form" autocomplete="off">
+        <input
+          type="text"
+          id="link-name-input"
+          class="input"
+          placeholder="Label (e.g. GitHub)"
+          maxlength="30"
+          aria-label="Link label"
+        />
+        <input
+          type="url"
+          id="link-url-input"
+          class="input"
+          placeholder="URL (e.g. https://github.com)"
+          aria-label="Link URL"
+        />
+        <button type="submit" class="btn btn--primary">Add</button>
+      </form>
+
+      <div class="links-grid" id="links-grid" aria-label="Quick links"></div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
